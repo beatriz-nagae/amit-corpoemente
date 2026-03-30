@@ -1,0 +1,1135 @@
+/* ============================================================
+   AMIT — Corpo e Mente
+   style.css
+   Estrutura:
+     1. Reset & Tokens (variáveis de cor, fonte, easing)
+     2. Animação de scroll (reveal)
+     3. Navbar
+     4. Hero
+     5. Seção Escritório / Horário
+     6. Seção Sobre
+     7. Seção Massoterapia
+     8. Seção Estética
+     9. Seção Pilates
+    10. Seção Hipnoterapia
+    11. Footer
+    12. Botões utilitários
+    13. Modal — Profissionais
+    14. Páginas de Massagem (overlay deslizante)
+    15. Responsivo (mobile)
+============================================================ */
+
+
+/* ── 1. RESET & TOKENS ────────────────────────────────────── */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  /* Paleta */
+  --sage:          #7a9e87;
+  --sage-light:    #c8d9c4;
+  --sage-dark:     #4e7060;
+  --caramel:       #a07850;
+  --caramel-light: #c9a87a;
+  --teal:          #4a7080;
+  --teal-dark:     #2e5060;
+  --cream:         #f5f0ea;
+  --warm-white:    #faf7f3;
+  --text-dark:     #2a2520;
+  --text-mid:      #5a5048;
+  --text-light:    #f5f0ea;
+
+  /* Tipografia */
+  --ff-display: 'Cormorant Garamond', Georgia, serif;
+  --ff-body:    'Jost', sans-serif;
+
+  /* Easings de animação */
+  --ease-smooth: cubic-bezier(.25,.8,.25,1);
+  --ease-bounce: cubic-bezier(.34,1.56,.64,1);
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--ff-body);
+  background: var(--warm-white);
+  color: var(--text-dark);
+  overflow-x: hidden;
+}
+
+img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+}
+
+
+/* ── 2. ANIMAÇÃO DE SCROLL ────────────────────────────────── */
+/*
+  Elementos com .reveal começam invisíveis e deslocados.
+  O JavaScript (main.js) adiciona .visible quando o elemento
+  entra na viewport via IntersectionObserver.
+*/
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity .7s var(--ease-smooth),
+              transform .7s var(--ease-smooth);
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.reveal-delay-1 { transition-delay: .15s; }
+.reveal-delay-2 { transition-delay: .30s; }
+.reveal-delay-3 { transition-delay: .45s; }
+
+
+/* ── 3. NAVBAR ────────────────────────────────────────────── */
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--warm-white);
+  border-bottom: 1px solid var(--sage-light);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 2.5rem;
+  transition: box-shadow .3s;
+}
+
+/* Classe adicionada pelo JS ao rolar a página */
+.navbar.scrolled {
+  box-shadow: 0 2px 20px rgba(0,0,0,.08);
+}
+
+.nav-logo {
+  display: flex;
+  flex-direction: column;
+  line-height: 1;
+}
+.nav-logo .logo-name {
+  font-family: var(--ff-display);
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--caramel);
+  letter-spacing: .05em;
+}
+.nav-logo .logo-sub {
+  font-size: .6rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--sage-dark);
+}
+
+.nav-links {
+  display: flex;
+  gap: 0.25rem;
+  list-style: none;
+}
+.nav-links a {
+  text-decoration: none;
+  font-size: .78rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  color: var(--text-mid);
+  padding: .5rem .85rem;
+  border-radius: 2rem;
+  transition: background .25s, color .25s;
+}
+.nav-links a:hover {
+  background: var(--sage-light);
+  color: var(--sage-dark);
+}
+
+/* Botão hambúrguer — visível só no mobile */
+.hamburger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  cursor: pointer;
+  padding: 6px;
+  border: none;
+  background: none;
+}
+.hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: var(--caramel);
+  border-radius: 2px;
+  transition: transform .35s var(--ease-smooth), opacity .35s;
+}
+/* Animação do X ao abrir */
+.hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+.hamburger.open span:nth-child(2) { opacity: 0; }
+.hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+/* Menu mobile — overlay fullscreen */
+.mobile-menu {
+  position: fixed;
+  inset: 0;
+  background: var(--warm-white);
+  z-index: 99;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  transform: translateX(100%);
+  transition: transform .4s var(--ease-smooth);
+}
+.mobile-menu.open { transform: translateX(0); }
+.mobile-menu a {
+  font-family: var(--ff-display);
+  font-size: 2rem;
+  font-weight: 300;
+  color: var(--text-dark);
+  text-decoration: none;
+  letter-spacing: .05em;
+  position: relative;
+}
+.mobile-menu a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--caramel);
+  transition: width .3s;
+}
+.mobile-menu a:hover::after { width: 100%; }
+
+
+/* ── 4. HERO ──────────────────────────────────────────────── */
+
+.hero {
+  position: relative;
+  height: 92vh;
+  min-height: 500px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fundo com zoom lento */
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(160deg, rgba(122,158,135,.45) 0%, rgba(74,112,128,.55) 60%, rgba(160,120,80,.3) 100%),
+    url('https://images.unsplash.com/photo-1600618528240-fb9fc964b853?w=1400&q=80') center/cover no-repeat;
+  transform: scale(1.05);
+  animation: heroZoom 12s ease-in-out infinite alternate;
+}
+@keyframes heroZoom {
+  from { transform: scale(1.05); }
+  to   { transform: scale(1.12); }
+}
+
+.hero-content {
+  position: relative;
+  text-align: center;
+  color: var(--text-light);
+  padding: 2rem;
+}
+
+/* Ícone flutuante */
+.hero-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  animation: floatIcon 4s ease-in-out infinite;
+}
+@keyframes floatIcon {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+
+.hero-content h1 {
+  font-family: var(--ff-display);
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+  letter-spacing: .02em;
+  text-shadow: 0 2px 24px rgba(0,0,0,.25);
+}
+.hero-content h1 em {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--caramel-light);
+}
+
+.hero-sub {
+  margin-top: .75rem;
+  font-size: clamp(.85rem, 2vw, 1.05rem);
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  opacity: .9;
+}
+
+.hero-cta {
+  display: inline-block;
+  margin-top: 2.5rem;
+  padding: .85rem 2.2rem;
+  border: 1.5px solid rgba(255,255,255,.7);
+  border-radius: 3rem;
+  color: #fff;
+  text-decoration: none;
+  font-size: .8rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  backdrop-filter: blur(6px);
+  background: rgba(255,255,255,.1);
+  transition: background .3s, border-color .3s, transform .3s var(--ease-bounce);
+}
+.hero-cta:hover {
+  background: rgba(255,255,255,.22);
+  border-color: #fff;
+  transform: translateY(-3px);
+}
+
+/* Divisor em onda entre seções */
+.wave { line-height: 0; }
+.wave svg { display: block; width: 100%; }
+
+
+/* ── BASES GERAIS DE SEÇÃO ────────────────────────────────── */
+
+section { padding: 5rem 2rem; }
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: .7rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  color: var(--caramel);
+  margin-bottom: .5rem;
+}
+.section-title {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 400;
+  line-height: 1.15;
+  color: inherit;
+}
+.section-title em {
+  font-style: italic;
+  color: var(--caramel);
+}
+
+
+/* ── 5. ESCRITÓRIO / HORÁRIO ──────────────────────────────── */
+
+.escritorio {
+  background: var(--cream);
+  position: relative;
+  overflow: hidden;
+}
+/* Círculo decorativo de fundo */
+.escritorio::before {
+  content: '';
+  position: absolute;
+  right: -80px; top: -80px;
+  width: 380px; height: 380px;
+  border-radius: 50%;
+  background: var(--sage-light);
+  opacity: .35;
+}
+
+.escritorio-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: center;
+}
+
+.escritorio-text .headline {
+  font-family: var(--ff-display);
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
+  font-weight: 400;
+  line-height: 1.3;
+  color: var(--text-dark);
+  margin-bottom: 1.5rem;
+}
+
+.horario-badge {
+  display: inline-flex;
+  flex-direction: column;
+  background: var(--caramel);
+  color: #fff;
+  padding: 1.1rem 1.8rem;
+  border-radius: .5rem;
+  margin-bottom: 1.5rem;
+}
+.horario-badge .label {
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  opacity: .8;
+}
+.horario-badge .time {
+  font-family: var(--ff-display);
+  font-size: 1.8rem;
+  font-weight: 600;
+  letter-spacing: .05em;
+}
+
+.escritorio-text p {
+  color: var(--text-mid);
+  line-height: 1.7;
+  font-size: .95rem;
+}
+
+.escritorio-img {
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0,0,0,.12);
+  aspect-ratio: 4/3;
+}
+.escritorio-img img {
+  height: 100%;
+  transition: transform .6s var(--ease-smooth);
+}
+.escritorio-img:hover img { transform: scale(1.04); }
+
+
+/* ── 6. SOBRE ─────────────────────────────────────────────── */
+
+.sobre {
+  background: var(--sage);
+  color: var(--text-light);
+}
+
+.sobre-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: start;
+}
+
+.sobre-img-main {
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 4/3;
+  box-shadow: 0 20px 50px rgba(0,0,0,.2);
+}
+
+.sobre-text p {
+  line-height: 1.8;
+  font-size: .95rem;
+  opacity: .92;
+  margin-bottom: 2rem;
+}
+
+.profissionais { margin-top: 1rem; }
+.profissionais .sub-label {
+  font-size: .65rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  opacity: .7;
+  margin-bottom: 1rem;
+}
+
+.profissionais-grid {
+  display: flex;
+  gap: 1.5rem;
+}
+
+/* Card clicável das profissionais */
+.prof-card {
+  text-align: center;
+  cursor: pointer;
+}
+
+.prof-photo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 3px solid rgba(255,255,255,.4);
+  margin: 0 auto .6rem;
+  transition: transform .3s var(--ease-bounce), border-color .3s;
+}
+.prof-photo:hover {
+  transform: scale(1.08);
+  border-color: var(--caramel-light);
+}
+.prof-photo img { height: 100%; }
+
+.prof-card .name {
+  font-family: var(--ff-display);
+  font-size: 1rem;
+  font-weight: 400;
+}
+.prof-card .role {
+  font-size: .65rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  opacity: .7;
+}
+
+
+/* ── 7. MASSOTERAPIA ──────────────────────────────────────── */
+
+.massoterapia {
+  background: var(--caramel);
+  color: var(--text-light);
+  text-align: center;
+}
+
+.massa-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  margin-top: 3rem;
+}
+
+/* Card com hover de lift + zoom */
+.massa-card {
+  position: relative;
+  border-radius: .75rem;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(0,0,0,.15);
+  transition: transform .3s var(--ease-bounce), box-shadow .3s;
+}
+.massa-card img {
+  height: 100%;
+  transition: transform .5s var(--ease-smooth);
+}
+/* Gradiente escuro na base para legibilidade do texto */
+.massa-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,.65) 0%, transparent 55%);
+}
+.massa-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 48px rgba(0,0,0,.25);
+}
+.massa-card:hover img { transform: scale(1.08); }
+
+.massa-card-label {
+  position: absolute;
+  bottom: 1rem;
+  left: 0; right: 0;
+  z-index: 2;
+  font-family: var(--ff-display);
+  font-size: 1.1rem;
+  color: #fff;
+  text-align: center;
+}
+
+
+/* ── 8. ESTÉTICA ──────────────────────────────────────────── */
+
+.estetica {
+  background: var(--sage-dark);
+  color: var(--text-light);
+}
+
+.est-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.est-img {
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 3/4;
+  box-shadow: 0 20px 60px rgba(0,0,0,.25);
+}
+
+.est-text .section-title { margin-bottom: 1.5rem; }
+.est-text p {
+  line-height: 1.8;
+  font-size: .95rem;
+  opacity: .88;
+  margin-bottom: 1rem;
+}
+
+.est-preco {
+  display: inline-block;
+  margin-top: 1rem;
+  font-family: var(--ff-display);
+  font-size: 1.8rem;
+  color: var(--caramel-light);
+}
+
+
+/* ── 9. PILATES ───────────────────────────────────────────── */
+
+.pilates {
+  background: var(--teal);
+  color: var(--text-light);
+}
+
+.pilates-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.pilates-text .section-title { margin-bottom: 1.5rem; }
+.pilates-text p {
+  line-height: 1.8;
+  font-size: .95rem;
+  opacity: .88;
+  margin-bottom: .75rem;
+}
+
+.pilates-precos {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+}
+.pilates-precos span {
+  font-family: var(--ff-display);
+  font-size: 1.05rem;
+  color: var(--sage-light);
+}
+
+.pilates-imgs {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  align-items: center;
+}
+
+/* Imagens circulares do Pilates */
+.pilates-circle {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(255,255,255,.2);
+  box-shadow: 0 12px 36px rgba(0,0,0,.2);
+  transition: transform .4s var(--ease-bounce), border-color .3s;
+}
+.pilates-circle:hover {
+  transform: scale(1.06);
+  border-color: var(--sage-light);
+}
+.pilates-circle img { height: 100%; }
+
+.pilates-duo {
+  display: flex;
+  gap: 1rem;
+}
+.pilates-duo .pilates-circle {
+  width: 155px;
+  height: 155px;
+}
+
+
+/* ── 10. HIPNOTERAPIA ─────────────────────────────────────── */
+
+.hipnoterapia {
+  background: var(--teal-dark);
+  color: var(--text-light);
+}
+
+.hipno-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 4rem;
+  align-items: center;
+}
+
+.hipno-circle {
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  overflow: hidden;
+  border: 4px solid rgba(255,255,255,.15);
+  box-shadow: 0 20px 60px rgba(0,0,0,.3);
+  margin: 0 auto;
+  transition: transform .5s var(--ease-smooth);
+}
+.hipno-circle:hover { transform: scale(1.04); }
+.hipno-circle img { height: 100%; }
+
+.hipno-text .section-title { margin-bottom: 1.5rem; }
+.hipno-text p {
+  line-height: 1.8;
+  font-size: .95rem;
+  opacity: .88;
+  margin-bottom: 1rem;
+}
+
+.hipno-precos {
+  margin-top: 1rem;
+  font-family: var(--ff-display);
+  font-size: 1.05rem;
+  color: var(--sage-light);
+}
+
+
+/* ── 11. FOOTER ───────────────────────────────────────────── */
+
+footer {
+  background: var(--caramel);
+  color: #fff;
+  text-align: center;
+  padding: 3.5rem 2rem;
+}
+
+.footer-logo {
+  font-family: var(--ff-display);
+  font-size: 2.5rem;
+  font-weight: 300;
+  letter-spacing: .08em;
+  margin-bottom: .3rem;
+}
+
+.footer-sub {
+  font-size: .65rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .75;
+  margin-bottom: 2rem;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: .4rem 1.5rem;
+  list-style: none;
+  margin-bottom: 2rem;
+}
+.footer-links a {
+  text-decoration: none;
+  color: rgba(255,255,255,.8);
+  font-size: .75rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  transition: color .25s;
+}
+.footer-links a:hover { color: #fff; }
+
+.footer-copy {
+  font-size: .72rem;
+  opacity: .5;
+}
+
+
+/* ── 12. BOTÕES UTILITÁRIOS ───────────────────────────────── */
+
+.btn {
+  display: inline-block;
+  padding: .75rem 1.8rem;
+  border-radius: 3rem;
+  font-size: .75rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-family: var(--ff-body);
+  cursor: pointer;
+  border: none;
+  transition: transform .25s var(--ease-bounce), box-shadow .25s;
+}
+.btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,.18);
+}
+.btn-light {
+  background: rgba(255,255,255,.18);
+  color: #fff;
+  border: 1.5px solid rgba(255,255,255,.5);
+  backdrop-filter: blur(4px);
+}
+.btn-light:hover { background: rgba(255,255,255,.28); }
+.btn-caramel { background: var(--caramel); color: #fff; }
+.btn-sage    { background: var(--sage);    color: #fff; }
+
+
+/* ── 13. MODAL — PROFISSIONAIS ────────────────────────────── */
+/*
+  Abre ao clicar em Marina ou Késsia na seção Sobre.
+  O JS (main.js) injeta os dados dinamicamente via profData.
+*/
+
+.prof-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background: rgba(30,22,18,.55);
+  backdrop-filter: blur(6px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .35s var(--ease-smooth);
+}
+.prof-modal-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.prof-modal {
+  background: var(--warm-white);
+  border-radius: 1.25rem;
+  max-width: 480px;
+  width: 100%;
+  overflow: hidden;
+  box-shadow: 0 32px 80px rgba(0,0,0,.28);
+  transform: translateY(24px) scale(.97);
+  transition: transform .4s var(--ease-bounce);
+  position: relative;
+}
+.prof-modal-overlay.open .prof-modal {
+  transform: translateY(0) scale(1);
+}
+
+.prof-modal-header {
+  position: relative;
+  height: 200px;
+  overflow: hidden;
+}
+.prof-modal-header img {
+  height: 100%;
+  object-position: center top;
+}
+.prof-modal-header::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(30,22,18,.6) 0%, transparent 60%);
+}
+
+.prof-modal-header-text {
+  position: absolute;
+  bottom: 1.1rem;
+  left: 1.5rem;
+  z-index: 2;
+  color: #fff;
+}
+.prof-modal-header-text h3 {
+  font-family: var(--ff-display);
+  font-size: 1.8rem;
+  font-weight: 400;
+  line-height: 1;
+}
+.prof-modal-header-text span {
+  font-size: .65rem;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  opacity: .85;
+}
+
+.prof-modal-body {
+  padding: 1.75rem;
+  color: var(--text-dark);
+}
+
+.prof-modal-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  margin-bottom: 1.25rem;
+}
+.prof-tag {
+  background: var(--sage-light);
+  color: var(--sage-dark);
+  font-size: .65rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .3rem .75rem;
+  border-radius: 2rem;
+}
+
+.prof-modal-body p {
+  font-size: .9rem;
+  line-height: 1.75;
+  color: var(--text-mid);
+  margin-bottom: 1rem;
+}
+
+.prof-modal-body .credentials {
+  display: flex;
+  flex-direction: column;
+  gap: .4rem;
+  border-top: 1px solid var(--sage-light);
+  padding-top: 1rem;
+  margin-top: .5rem;
+}
+.prof-modal-body .credentials li {
+  list-style: none;
+  font-size: .8rem;
+  color: var(--text-mid);
+  display: flex;
+  gap: .5rem;
+  align-items: flex-start;
+}
+.prof-modal-body .credentials li::before {
+  content: '✦';
+  color: var(--caramel);
+  font-size: .6rem;
+  margin-top: .2rem;
+  flex-shrink: 0;
+}
+
+.prof-modal-close {
+  position: absolute;
+  top: .85rem; right: .85rem;
+  z-index: 10;
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,.85);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--text-dark);
+  transition: background .2s, transform .2s;
+}
+.prof-modal-close:hover {
+  background: #fff;
+  transform: scale(1.1);
+}
+
+
+/* ── 14. PÁGINAS DE MASSAGEM (overlay deslizante) ─────────── */
+/*
+  Cada tipo de massagem tem um painel que desliza da direita.
+  O JS (main.js) abre/fecha via openMassaPage() / closeMassaPage().
+*/
+
+.massa-page {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background: var(--warm-white);
+  overflow-y: auto;
+  transform: translateX(100%);
+  transition: transform .5s var(--ease-smooth);
+}
+.massa-page.open { transform: translateX(0); }
+
+.massa-page-inner {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 0 0 4rem;
+}
+
+.massa-page-hero {
+  position: relative;
+  height: 52vh;
+  min-height: 300px;
+  overflow: hidden;
+}
+.massa-page-hero img { height: 100%; object-position: center; }
+.massa-page-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,.15) 0%, rgba(0,0,0,.55) 100%);
+}
+
+.massa-page-back {
+  position: absolute;
+  top: 1.2rem; left: 1.5rem;
+  z-index: 5;
+  background: rgba(255,255,255,.2);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,.4);
+  color: #fff;
+  border-radius: 2rem;
+  padding: .5rem 1.2rem;
+  font-size: .72rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  transition: background .25s, transform .25s;
+}
+.massa-page-back:hover {
+  background: rgba(255,255,255,.35);
+  transform: translateX(-3px);
+}
+
+.massa-page-hero-text {
+  position: absolute;
+  bottom: 2rem; left: 2rem;
+  z-index: 5;
+  color: #fff;
+}
+.massa-page-hero-text .eyebrow {
+  font-size: .65rem;
+  letter-spacing: .25em;
+  text-transform: uppercase;
+  opacity: .8;
+  margin-bottom: .4rem;
+}
+.massa-page-hero-text h2 {
+  font-family: var(--ff-display);
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.massa-page-content { padding: 3rem 2rem 0; }
+
+.massa-page-lead {
+  font-family: var(--ff-display);
+  font-size: clamp(1.15rem, 2.5vw, 1.5rem);
+  font-weight: 300;
+  line-height: 1.55;
+  color: var(--text-dark);
+  margin-bottom: 2rem;
+  max-width: 680px;
+}
+
+.massa-page-body {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+.massa-page-body p {
+  font-size: .92rem;
+  line-height: 1.8;
+  color: var(--text-mid);
+  margin-bottom: 1rem;
+}
+
+/* Caixa lateral com infos práticas */
+.massa-info-box {
+  background: var(--cream);
+  border-radius: 1rem;
+  padding: 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+.massa-info-item { display: flex; flex-direction: column; gap: .2rem; }
+.massa-info-item .info-label {
+  font-size: .6rem;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--caramel);
+}
+.massa-info-item .info-value {
+  font-family: var(--ff-display);
+  font-size: 1.15rem;
+  color: var(--text-dark);
+}
+.massa-info-item .info-value.price {
+  font-size: 1.6rem;
+  color: var(--caramel);
+}
+
+.massa-cta-btn {
+  margin-top: .5rem;
+  display: inline-block;
+  padding: .8rem 1.8rem;
+  background: var(--sage);
+  color: #fff;
+  border-radius: 3rem;
+  font-size: .75rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  font-family: var(--ff-body);
+  width: 100%;
+  text-align: center;
+  transition: background .25s, transform .25s var(--ease-bounce);
+}
+.massa-cta-btn:hover {
+  background: var(--sage-dark);
+  transform: translateY(-3px);
+}
+
+/* Grid de benefícios no rodapé de cada página */
+.massa-beneficios {
+  margin-top: 2.5rem;
+  padding: 2.5rem 2rem;
+  background: var(--sage);
+  border-radius: 1rem;
+  color: #fff;
+}
+.massa-beneficios h4 {
+  font-family: var(--ff-display);
+  font-size: 1.4rem;
+  font-weight: 400;
+  margin-bottom: 1.25rem;
+}
+.beneficios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: .85rem;
+}
+.beneficio-item {
+  display: flex;
+  gap: .65rem;
+  align-items: flex-start;
+  font-size: .85rem;
+  line-height: 1.5;
+  opacity: .92;
+}
+.beneficio-item .ico { font-size: 1.1rem; flex-shrink: 0; }
+
+
+/* ── 15. RESPONSIVO ───────────────────────────────────────── */
+
+/* Tablet e abaixo */
+@media (max-width: 900px) {
+  .escritorio-grid,
+  .sobre-grid,
+  .est-grid,
+  .pilates-grid,
+  .hipno-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .massa-grid { grid-template-columns: repeat(2, 1fr); }
+
+  .hipno-grid .hipno-circle { width: 220px; height: 220px; }
+
+  /* Esconde nav links e mostra hambúrguer */
+  .nav-links  { display: none; }
+  .hamburger  { display: flex; }
+
+  .pilates-imgs { flex-direction: row; flex-wrap: wrap; justify-content: center; }
+  .pilates-circle { width: 160px; height: 160px; }
+  .pilates-duo .pilates-circle { width: 130px; height: 130px; }
+}
+
+/* Páginas de massagem — coluna única no mobile */
+@media (max-width: 700px) {
+  .massa-page-body { grid-template-columns: 1fr; }
+}
+
+/* Mobile pequeno */
+@media (max-width: 560px) {
+  .massa-grid { grid-template-columns: repeat(2, 1fr); }
+  section { padding: 3.5rem 1.25rem; }
+  .navbar { padding: .75rem 1.25rem; }
+  .hero-content h1 { font-size: 2.4rem; }
+}

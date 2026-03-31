@@ -281,12 +281,12 @@ img {
   transform: translateY(-3px);
 }
 
-/* divisoria */
+/* Divisor em onda entre seções */
 .wave { line-height: 0; }
 .wave svg { display: block; width: 100%; }
 
 
-/* bases */
+/* ── BASES GERAIS DE SEÇÃO ────────────────────────────────── */
 
 section { padding: 5rem 2rem; }
 
@@ -299,7 +299,7 @@ section { padding: 5rem 2rem; }
   font-size: .7rem;
   letter-spacing: .25em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--caramel);
   margin-bottom: .5rem;
 }
 .section-title {
@@ -314,12 +314,15 @@ section { padding: 5rem 2rem; }
   color: var(--caramel);
 }
 
+
+/* ── 5. ESCRITÓRIO / HORÁRIO ──────────────────────────────── */
+
 .escritorio {
   background: var(--cream);
   position: relative;
   overflow: hidden;
 }
-
+/* Círculo decorativo de fundo */
 .escritorio::before {
   content: '';
   position: absolute;
@@ -386,10 +389,14 @@ section { padding: 5rem 2rem; }
 }
 .escritorio-img:hover img { transform: scale(1.04); }
 
+
+/* ── 6. SOBRE ─────────────────────────────────────────────── */
+
 .sobre {
   background: var(--sage);
   color: var(--text-light);
 }
+
 .sobre-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -425,6 +432,7 @@ section { padding: 5rem 2rem; }
   gap: 1.5rem;
 }
 
+/* Card clicável das profissionais */
 .prof-card {
   text-align: center;
   cursor: pointer;
@@ -456,6 +464,9 @@ section { padding: 5rem 2rem; }
   text-transform: uppercase;
   opacity: .7;
 }
+
+
+/* ── 7. MASSOTERAPIA ──────────────────────────────────────── */
 
 .massoterapia {
   background: var(--caramel);

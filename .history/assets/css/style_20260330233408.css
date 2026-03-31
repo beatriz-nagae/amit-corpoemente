@@ -299,7 +299,7 @@ section { padding: 5rem 2rem; }
   font-size: .7rem;
   letter-spacing: .25em;
   text-transform: uppercase;
-  color: #fff;
+  color: var(--caramel-light);
   margin-bottom: .5rem;
 }
 .section-title {

@@ -1,8 +1,36 @@
+/* ============================================================
+   AMIT — Corpo e Mente
+   main.js
+   Estrutura:
+     1. Navbar — sombra ao rolar
+     2. Menu mobile — hambúrguer
+     3. Scroll reveal — IntersectionObserver
+     4. Modal das Profissionais — dados + abrir/fechar
+     5. Páginas de Massagem — abrir/fechar
+     6. Atalho de teclado — fechar com Escape
+============================================================ */
+
+
+/* ── 1. NAVBAR — SOMBRA AO ROLAR ─────────────────────────── */
+/*
+  Adiciona a classe .scrolled na navbar quando o usuário
+  rolar mais de 20px. O CSS usa essa classe para aplicar
+  box-shadow, dando profundidade ao header.
+*/
+
 const navbar = document.getElementById('navbar');
 
 window.addEventListener('scroll', () => {
   navbar.classList.toggle('scrolled', window.scrollY > 20);
 });
+
+
+/* ── 2. MENU MOBILE — HAMBÚRGUER ──────────────────────────── */
+/*
+  O botão hambúrguer alterna as classes .open no próprio
+  botão (anima as 3 linhas em X) e no overlay fullscreen
+  (.mobile-menu). Bloqueia o scroll do body enquanto aberto.
+*/
 
 const hamburger  = document.getElementById('hamburger');
 const mobileMenu = document.getElementById('mobileMenu');
@@ -14,7 +42,7 @@ hamburger.addEventListener('click', () => {
     mobileMenu.classList.contains('open') ? 'hidden' : '';
 });
 
-/* fecha o menu quando clicado em algum link */
+/* Fecha o menu ao clicar em qualquer link interno */
 function closeMenu() {
   hamburger.classList.remove('open');
   mobileMenu.classList.remove('open');

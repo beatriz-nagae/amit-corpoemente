@@ -1,5 +1,26 @@
+/* ============================================================
+   AMIT — Corpo e Mente
+   style.css
+   Estrutura:
+     1. Reset & Tokens (variáveis de cor, fonte, easing)
+     2. Animação de scroll (reveal)
+     3. Navbar
+     4. Hero
+     5. Seção Escritório / Horário
+     6. Seção Sobre
+     7. Seção Massoterapia
+     8. Seção Estética
+     9. Seção Pilates
+    10. Seção Hipnoterapia
+    11. Footer
+    12. Botões utilitários
+    13. Modal — Profissionais
+    14. Páginas de Massagem (overlay deslizante)
+    15. Responsivo (mobile)
+============================================================ */
 
-/* 1. RESET & TOKENS */
+
+/* ── 1. RESET & TOKENS ────────────────────────────────────── */
 
 *, *::before, *::after {
   box-sizing: border-box;
@@ -220,20 +241,12 @@ img {
   padding: 2rem;
 }
 
+/* Ícone flutuante */
 .hero-icon {
+  font-size: 2.5rem;
   margin-bottom: 1rem;
   animation: floatIcon 4s ease-in-out infinite;
-  display: flex;
-  justify-content: center;
 }
-
-.hero-icon img {
-  width: 65px;
-  height: auto;
-  display: block;
-  justify-content: center;
-}
-
 @keyframes floatIcon {
   0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-10px); }

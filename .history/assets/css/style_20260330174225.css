@@ -223,17 +223,14 @@ img {
 .hero-icon {
   margin-bottom: 1rem;
   animation: floatIcon 4s ease-in-out infinite;
-  display: flex;
-  justify-content: center;
 }
 
 .hero-icon img {
   width: 65px;
   height: auto;
   display: block;
-  justify-content: center;
+  display: center;
 }
-
 @keyframes floatIcon {
   0%,100% { transform: translateY(0); }
   50%      { transform: translateY(-10px); }

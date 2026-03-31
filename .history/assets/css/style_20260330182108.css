@@ -223,8 +223,7 @@ img {
 .hero-icon {
   margin-bottom: 1rem;
   animation: floatIcon 4s ease-in-out infinite;
-  display: flex;
-  justify-content: center;
+  text-align: center;
 }
 
 .hero-icon img {

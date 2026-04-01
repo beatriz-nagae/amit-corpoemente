@@ -163,43 +163,37 @@
       <div class="est-grid">
 
         <div class="est-img reveal">
-          <img src="assets/img/estetica/limpeza-de-pele.jpg" alt="Limpeza de Pele" />
+          <img src="https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?w=700&q=80" alt="Limpeza de Pele" />
         </div>
 
         <div class="est-text reveal reveal-delay-1">
           <p class="section-label" style="color:var(--sage-light);">Estética</p>
           <h2 class="section-title">Limpeza<br><em>de Pele</em></h2>
-          <p>A limpeza de pele é um procedimento estético profissional essencial que desobstrui poros, remove cravos, mílios (cravos brancos), impurezas e células mortas, além de controlar a oleosidade. Indicada para todos os tipos de pele, ela renova o viço, melhora a textura e potencializa a absorção de produtos de skincare.</p>
-          <p><strong>O Procedimento inclui</strong><br>Higienização da pele;
-Esfoliação (remoção de células mortas);
-Vaporizador de ozônio (abertura dos poros e emoliência);
-Extração manual de filamentos sebácios e cravos, limpeza dos poros;
-Alta frequência (ação bactericida, cicatrizante e calmante);
-Máscara facial (calmante ou hidratante);
-Tonificação da pele;
-Hidratação (sérum ou creme);
-Finalização com protetor solar.</p>
+          <p>A limpeza de pele é um procedimento estético profissional que remove cravos, mílios (cravos brancos), impurezas e células mortas, além de controlar a oleosidade e desobstruir poros. Indicada para todos os tipos de pele, ela renova o viço, melhora a textura e potencializa a absorção de produtos de skincare.</p>
+          <p><strong>Onodera Estética +4</strong><br>Etapas do Procedimento Profissional</p>
           <span class="est-preco">R$ 120,00</span>
         </div>
-<!----colocar aqui botao whatsapp agendar!---->
+
       </div>
     </div>
   </section>
 
 
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- PILATES                                             -->
+  <!-- ════════════════════════════════════════════════════ -->
   <section class="pilates" id="pilates">
     <div class="container">
       <div class="pilates-grid">
 
         <div class="pilates-text reveal">
-          <p class="section-label" style="color:var(--sage-light);">Fortalecimento e equilíbrio</p>
+          <p class="section-label" style="color:var(--sage-light);">Movimento e equilíbrio</p>
           <h2 class="section-title">Pilates</h2>
-          <p style="margin-top:1.5rem;">Desenvolvido em 1920 por Joseph Pilates usando molas de camas, o método foca na conexão mente-corpo, respiração, controle muscular e fortalecimento do "core". O pilates é essencial é na prevenção e tratamento de doenças respiratórias por focar na expansão da caixa torácica, fortalecer os músculos respiratórios (diafragma e intercostais) e promover a respiração consciente, sendo aliado poderoso para atletas, cantores, profissionais físicos. O Pilates fortalece e recupera mobilidade na terceira idade e é responsavel para o envelhecimento com autonomia, bem-estar e muita saúde.</p>
+          <p style="margin-top:1.5rem;">O pilates começou em 1920 com Joseph Pilates e tem o objetivo de fortalecer o core, melhorar a postura e promover o equilíbrio corporal. Indicado para todas as idades e perfis, pode ser praticado de 2 a 3 vezes por semana.</p>
           <div class="pilates-precos">
             <span>R$ x — Aula avulsa</span>
+            <span>R$ x — Pacote 8 aulas</span>
             <span>R$ x — Pacote mensal</span>
-            <span>R$ x — Pacote trimestral</span>
-            <!----colocar aqui botao whatsapp agendar!---->
           </div>
           <p style="margin-top:1rem; opacity:.65; font-size:.85rem;">Contraindicado para: gestantes (1º trimestre), pós-cirúrgicos recentes sem liberação médica.</p>
         </div>
@@ -222,6 +216,10 @@ Finalização com protetor solar.</p>
     </div>
   </section>
 
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- HIPNOTERAPIA                                        -->
+  <!-- ════════════════════════════════════════════════════ -->
   <section class="hipnoterapia" id="hipnoterapia">
     <div class="container">
       <div class="hipno-grid">
@@ -245,6 +243,10 @@ Finalização com protetor solar.</p>
     </div>
   </section>
 
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- FOOTER                                              -->
+  <!-- ════════════════════════════════════════════════════ -->
   <footer>
     <div class="footer-logo">Amit</div>
     <div class="footer-sub">Massoterapia · Pilates · Hipnoterapia</div>
@@ -259,6 +261,10 @@ Finalização com protetor solar.</p>
   </footer>
 
 
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- MODAL — PROFISSIONAIS                               -->
+  <!-- Dados e lógica em: assets/js/main.js > profData    -->
+  <!-- ════════════════════════════════════════════════════ -->
   <div class="prof-modal-overlay" id="profModalOverlay" onclick="closeProfModal(event)">
     <div class="prof-modal" id="profModal">
       <button class="prof-modal-close" onclick="closeProfModal(null, true)">✕</button>
@@ -277,6 +283,11 @@ Finalização com protetor solar.</p>
     </div>
   </div>
 
+
+  <!-- ════════════════════════════════════════════════════ -->
+  <!-- PÁGINAS DE MASSAGEM (painéis deslizantes)           -->
+  <!-- Abertos por openMassaPage() em assets/js/main.js   -->
+  <!-- ════════════════════════════════════════════════════ -->
 
   <!-- Drenagem Linfática -->
   <div class="massa-page" id="page-drenagem">
@@ -332,11 +343,12 @@ Finalização com protetor solar.</p>
     </div>
   </div>
 
+  <!-- Modeladora -->
   <div class="massa-page" id="page-modeladora">
     <div class="massa-page-inner">
       <div class="massa-page-hero">
         <button class="massa-page-back" onclick="closeMassaPage('modeladora')">← Voltar</button>
-        <img src="assets/img/massoterapia/massagem-modeladora.jpg" alt="Modeladora" />
+        <img src="https://images.unsplash.com/photo-1544161515-4ab6ce6db874?w=1200&q=80" alt="Modeladora" />
         <div class="massa-page-hero-text">
           <p class="eyebrow">Massoterapia</p>
           <h2>Massagem<br>Modeladora</h2>
@@ -346,9 +358,9 @@ Finalização com protetor solar.</p>
         <p class="massa-page-lead">Técnica vigorosa com movimentos de amassamento e deslizamento profundo que trabalha a gordura localizada, melhora o contorno corporal e combate a celulite.</p>
         <div class="massa-page-body">
           <div>
-            <p> A massagem modeladora é uma técnica de manipulação intensa dos tecidos que atua diretamente na gordura localizada e na celulite. Por meio de movimentos de pressão, amassamento e fricção, ela estimula a circulação sanguínea e linfática, quebrando nódulos de gordura e melhorando o contorno do corpo.</p>
-            <p>Além dos benefícios estéticos, a modeladora promove o relaxamento muscular profundo e alivia tensões acumuladas. Combinada com alimentação equilibrada e prática regular de exercícios, potencializa os resultados de forma expressiva.</p>
-            <p>Cada sessão é adaptada ao biotipo e objetivo de cada cliente.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. A massagem modeladora é uma técnica de manipulação intensa dos tecidos que atua diretamente na gordura localizada e na celulite. Por meio de movimentos de pressão, amassamento e fricção, ela estimula a circulação sanguínea e linfática, quebrando nódulos de gordura e melhorando o contorno do corpo.</p>
+            <p>Além dos benefícios estéticos, a modeladora promove o relaxamento muscular profundo e alivia tensões acumuladas. Combinada com alimentação equilibrada e prática regular de exercícios, potencializa os resultados de forma expressiva. Lorem ipsum dolor sit amet consectetur adipiscing elit sed do eiusmod tempor.</p>
+            <p>Cada sessão é adaptada ao biotipo e objetivo de cada cliente. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam eaque ipsa quae ab illo inventore.</p>
           </div>
           <div class="massa-info-box">
             <div class="massa-info-item">
@@ -361,13 +373,13 @@ Finalização com protetor solar.</p>
             </div>
             <div class="massa-info-item">
               <span class="info-label">Frequência recomendada</span>
-              <span class="info-value">2× por semana</span>
+              <span class="info-value">2 a 3× por semana</span>
             </div>
             <div class="massa-info-item">
               <span class="info-label">Valor</span>
               <span class="info-value price">R$ x,00</span>
             </div>
-            <button class="massa-cta-btn" onclick="window.open('https://wa.me/5511989243356','_blank')">Agendar via WhatsApp</button>
+            <button class="massa-cta-btn" onclick="window.open('https://wa.me/55XXXXXXXXXXX','_blank')">Agendar via WhatsApp</button>
           </div>
         </div>
         <div class="massa-beneficios">
@@ -385,11 +397,12 @@ Finalização com protetor solar.</p>
     </div>
   </div>
 
+  <!-- Relaxante -->
   <div class="massa-page" id="page-relaxante">
     <div class="massa-page-inner">
       <div class="massa-page-hero">
         <button class="massa-page-back" onclick="closeMassaPage('relaxante')">← Voltar</button>
-        <img src="assets/img/massoterapia/massagem-relaxante.jpg" alt="Relaxante" />
+        <img src="https://images.unsplash.com/photo-1598901865264-4f9d442ab80e?w=1200&q=80" alt="Relaxante" />
         <div class="massa-page-hero-text">
           <p class="eyebrow">Massoterapia</p>
           <h2>Massagem<br>Relaxante</h2>
@@ -399,9 +412,9 @@ Finalização com protetor solar.</p>
         <p class="massa-page-lead">Um convite ao silêncio interior. Movimentos suaves e envolventes que dissolvem tensões, acalmam a mente e restauram o equilíbrio natural do corpo.</p>
         <div class="massa-page-body">
           <div>
-            <p>Perfeito pra iniciar ou terminar um dia estressante. A massagem relaxante é a mais procurada entre quem busca aliviar o estresse do dia a dia. Com movimentos longos, rítmicos e de pressão suave a moderada, ela atua no sistema nervoso parassimpático, induzindo um estado de calma profunda e bem-estar.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. A massagem relaxante é a mais procurada entre quem busca aliviar o estresse do dia a dia. Com movimentos longos, rítmicos e de pressão suave a moderada, ela atua no sistema nervoso parassimpático, induzindo um estado de calma profunda e bem-estar.</p>
             <p>Durante a sessão, o corpo libera endorfinas e serotonina, hormônios responsáveis pela sensação de prazer e equilíbrio emocional. A tensão muscular acumulada é gradualmente dissolvida, melhorando a qualidade do sono e reduzindo os sintomas de ansiedade.</p>
-            <p>Ideal para quem tem rotina intensa de trabalho ou está passando por momentos de maior estresse.</p>
+            <p>Ideal para quem tem rotina intensa de trabalho ou está passando por momentos de maior estresse. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores.</p>
           </div>
           <div class="massa-info-box">
             <div class="massa-info-item">
@@ -414,13 +427,13 @@ Finalização com protetor solar.</p>
             </div>
             <div class="massa-info-item">
               <span class="info-label">Frequência recomendada</span>
-              <span class="info-value">1× por semana</span>
+              <span class="info-value">1 a 2× por semana</span>
             </div>
             <div class="massa-info-item">
               <span class="info-label">Valor</span>
               <span class="info-value price">R$ x,00</span>
             </div>
-            <button class="massa-cta-btn" onclick="window.open('https://wa.me/5511989243356','_blank')">Agendar via WhatsApp</button>
+            <button class="massa-cta-btn" onclick="window.open('https://wa.me/55XXXXXXXXXXX','_blank')">Agendar via WhatsApp</button>
           </div>
         </div>
         <div class="massa-beneficios">
@@ -438,12 +451,12 @@ Finalização com protetor solar.</p>
     </div>
   </div>
 
-
+  <!-- Shiatsu -->
   <div class="massa-page" id="page-shiatsu">
     <div class="massa-page-inner">
       <div class="massa-page-hero">
         <button class="massa-page-back" onclick="closeMassaPage('shiatsu')">← Voltar</button>
-        <img src="assets/img/massoterapia/shiatsu.jpg" alt="Shiatsu" />
+        <img src="https://images.unsplash.com/photo-1600334129128-685c5582fd35?w=1200&q=80" alt="Shiatsu" />
         <div class="massa-page-hero-text">
           <p class="eyebrow">Massoterapia</p>
           <h2>Shiatsu</h2>
@@ -453,9 +466,9 @@ Finalização com protetor solar.</p>
         <p class="massa-page-lead">Originário do Japão, o Shiatsu equilibra a energia vital do corpo através de pressões nos meridianos, aliviando dores, melhorando a postura e harmonizando corpo e mente.</p>
         <div class="massa-page-body">
           <div>
-            <p> O Shiatsu é uma técnica milenar de origem japonesa baseada nos princípios da medicina tradicional chinesa. A palavra "shiatsu" significa literalmente "pressão com os dedos" — a técnica utiliza o peso do corpo do terapeuta aplicado com polegares, palmas, cotovelos e joelhos nos pontos de acupressura do corpo.</p>
+            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. O Shiatsu é uma técnica milenar de origem japonesa baseada nos princípios da medicina tradicional chinesa. A palavra "shiatsu" significa literalmente "pressão com os dedos" — a técnica utiliza o peso do corpo do terapeuta aplicado com polegares, palmas, cotovelos e joelhos nos pontos de acupressura do corpo.</p>
             <p>Ao estimular os meridianos — canais de energia que percorrem o organismo — o Shiatsu promove o fluxo harmonioso do Ki (energia vital), aliviando bloqueios que se manifestam como dor, tensão ou desequilíbrio emocional. É realizado vestido, sobre um futon ou maca especial.</p>
-            <p>Particularmente eficaz para dores crônicas, enxaquecas, distúrbios do sono e desequilíbrios emocionais.</p>
+            <p>Particularmente eficaz para dores crônicas, enxaquecas, distúrbios do sono e desequilíbrios emocionais. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid.</p>
           </div>
           <div class="massa-info-box">
             <div class="massa-info-item">
@@ -474,7 +487,7 @@ Finalização com protetor solar.</p>
               <span class="info-label">Valor</span>
               <span class="info-value price">R$ x,00</span>
             </div>
-            <button class="massa-cta-btn" onclick="window.open('https://wa.me/5511989243356','_blank')">Agendar via WhatsApp</button>
+            <button class="massa-cta-btn" onclick="window.open('https://wa.me/55XXXXXXXXXXX','_blank')">Agendar via WhatsApp</button>
           </div>
         </div>
         <div class="massa-beneficios">
@@ -492,6 +505,8 @@ Finalização com protetor solar.</p>
     </div>
   </div>
 
+
+  <!-- JavaScript do site — carregado no final do body -->
   <script src="assets/js/main.js"></script>
 </body>
 </html>

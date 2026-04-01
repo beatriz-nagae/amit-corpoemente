@@ -588,8 +588,8 @@ section { padding: 5rem 2rem; }
   gap: 1rem;
 }
 .pilates-duo .pilates-circle {
-  width: 280px;
-  height: 280px;
+  width: 155px;
+  height: 155px;
 }
 
 
@@ -1033,6 +1033,9 @@ footer {
 }
 .beneficio-item .ico { font-size: 1.1rem; flex-shrink: 0; }
 
+
+/* ── RESPONSIVO ───────────────────────────────────────────── */
+
 @media (max-width: 900px) {
   .escritorio-grid,
   .sobre-grid,
@@ -1059,7 +1062,7 @@ footer {
     width: clamp(200px, 18vw, 280px);
     height: clamp(200px, 18vw, 280px);
   }
-} 
+} /* ← fecha o 900px aqui, depois de tudo */
 
 @media (max-width: 700px) {
   .massa-page-body { grid-template-columns: 1fr; }

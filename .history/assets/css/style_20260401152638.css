@@ -41,7 +41,13 @@ img {
 }
 
 
-/* animacao scroll */
+/*animacao scroll */
+/*
+  Elementos com .reveal começam invisíveis e deslocados.
+  O JavaScript (main.js) adiciona .visible quando o elemento
+  entra na viewport via IntersectionObserver.
+*/
+
 .reveal {
   opacity: 0;
   transform: translateY(32px);
@@ -56,8 +62,6 @@ img {
 .reveal-delay-2 { transition-delay: .30s; }
 .reveal-delay-3 { transition-delay: .45s; }
 
-
-/* navbar */
 .navbar {
   position: sticky;
   top: 0;
@@ -113,7 +117,7 @@ img {
   color: var(--sage-dark);
 }
 
-/* botao mobile hamburger */
+/* botao mobile hamburger header menu */
 .hamburger {
   display: none;
   flex-direction: column;
@@ -168,8 +172,6 @@ img {
 }
 .mobile-menu a:hover::after { width: 100%; }
 
-
-/* hero */
 .hero {
   position: relative;
   height: 92vh;
@@ -185,7 +187,7 @@ img {
   inset: 0;
   background:
     linear-gradient(160deg, rgba(82, 119, 96, 0.45) 0%, rgba(116, 88, 72, 0.55) 60%, rgba(160, 80, 80, 0.3) 100%),
-    url('../img/hero/massoterapiaHERO.png') center/cover no-repeat;
+   url('../img/hero/massoterapiaHERO.png') center/cover no-repeat;
   transform: scale(1.05);
   animation: heroZoom 12s ease-in-out infinite alternate;
 }
@@ -207,10 +209,12 @@ img {
   display: flex;
   justify-content: center;
 }
+
 .hero-icon img {
   width: 65px;
   height: auto;
   display: block;
+  justify-content: center;
 }
 
 @keyframes floatIcon {
@@ -266,7 +270,8 @@ img {
 .wave svg { display: block; width: 100%; }
 
 
-/* bases gerais */
+/* bases */
+
 section { padding: 5rem 2rem; }
 
 .container {
@@ -293,13 +298,12 @@ section { padding: 5rem 2rem; }
   color: var(--caramel);
 }
 
-
-/* escritorio */
 .escritorio {
   background: var(--cream);
   position: relative;
   overflow: hidden;
 }
+
 .escritorio::before {
   content: '';
   position: absolute;
@@ -366,8 +370,6 @@ section { padding: 5rem 2rem; }
 }
 .escritorio-img:hover img { transform: scale(1.04); }
 
-
-/* sobre */
 .sobre {
   background: var(--sage);
   color: var(--text-light);
@@ -439,8 +441,6 @@ section { padding: 5rem 2rem; }
   opacity: .7;
 }
 
-
-/* massoterapia */
 .massoterapia {
   background: var(--caramel);
   color: var(--text-light);
@@ -454,6 +454,7 @@ section { padding: 5rem 2rem; }
   margin-top: 3rem;
 }
 
+/* Card com hover de lift + zoom */
 .massa-card {
   position: relative;
   border-radius: .75rem;
@@ -467,6 +468,7 @@ section { padding: 5rem 2rem; }
   height: 100%;
   transition: transform .5s var(--ease-smooth);
 }
+/* gradiente escuro na base para legibilidade do texto */
 .massa-card::after {
   content: '';
   position: absolute;
@@ -490,8 +492,6 @@ section { padding: 5rem 2rem; }
   text-align: center;
 }
 
-
-/* estetica */
 .estetica {
   background: var(--sage-dark);
   color: var(--text-light);
@@ -527,8 +527,6 @@ section { padding: 5rem 2rem; }
   color: var(--caramel-light);
 }
 
-
-/* pilates */
 .pilates {
   background: var(--teal);
   color: var(--text-light);
@@ -568,6 +566,7 @@ section { padding: 5rem 2rem; }
   align-items: center;
 }
 
+/* Imagens circulares do Pilates */
 .pilates-circle {
   width: 200px;
   height: 200px;
@@ -588,12 +587,10 @@ section { padding: 5rem 2rem; }
   gap: 1rem;
 }
 .pilates-duo .pilates-circle {
-  width: 280px;
-  height: 280px;
+  width: 155px;
+  height: 155px;
 }
 
-
-/* hipnoterapia */
 .hipnoterapia {
   background: var(--teal-dark);
   color: var(--text-light);
@@ -634,8 +631,6 @@ section { padding: 5rem 2rem; }
   color: var(--sage-light);
 }
 
-
-/* footer */
 footer {
   background: var(--caramel);
   color: #fff;
@@ -682,8 +677,6 @@ footer {
   opacity: .5;
 }
 
-
-/* botoes */
 .btn {
   display: inline-block;
   padding: .75rem 1.8rem;
@@ -712,7 +705,12 @@ footer {
 .btn-sage    { background: var(--sage);    color: #fff; }
 
 
-/* modal profissionais */
+/* ── 13. MODAL — PROFISSIONAIS ────────────────────────────── */
+/*
+  Abre ao clicar em Marina ou Késsia na seção Sobre.
+  O JS (main.js) injeta os dados dinamicamente via profData.
+*/
+
 .prof-modal-overlay {
   position: fixed;
   inset: 0;
@@ -857,7 +855,12 @@ footer {
 }
 
 
-/* paginas de massagem (overlay deslizante) */
+/* ── 14. PÁGINAS DE MASSAGEM (overlay deslizante) ─────────── */
+/*
+  Cada tipo de massagem tem um painel que desliza da direita.
+  O JS (main.js) abre/fecha via openMassaPage() / closeMassaPage().
+*/
+
 .massa-page {
   position: fixed;
   inset: 0;
@@ -1005,6 +1008,7 @@ footer {
   transform: translateY(-3px);
 }
 
+/* Grid de benefícios no rodapé de cada página */
 .massa-beneficios {
   margin-top: 2.5rem;
   padding: 2.5rem 2rem;
@@ -1033,6 +1037,9 @@ footer {
 }
 .beneficio-item .ico { font-size: 1.1rem; flex-shrink: 0; }
 
+
+
+/* responsividade p tablets e under */
 @media (max-width: 900px) {
   .escritorio-grid,
   .sobre-grid,
@@ -1050,21 +1057,20 @@ footer {
   .nav-links  { display: none; }
   .hamburger  { display: flex; }
 
-  .pilates-circle {
-    width: clamp(260px, 22vw, 360px);
-    height: clamp(260px, 22vw, 360px);
-  }
+.pilates-circle {
+  width: clamp(260px, 22vw, 360px);
+  height: clamp(260px, 22vw, 360px);
+}
 
-  .pilates-duo .pilates-circle {
-    width: clamp(200px, 18vw, 280px);
-    height: clamp(200px, 18vw, 280px);
-  }
-} 
-
+.pilates-duo .pilates-circle {
+  width: clamp(200px, 18vw, 280px);
+  height: clamp(200px, 18vw, 280px);
+}
 @media (max-width: 700px) {
   .massa-page-body { grid-template-columns: 1fr; }
 }
 
+/* Mobile pequeno */
 @media (max-width: 560px) {
   .massa-grid { grid-template-columns: repeat(2, 1fr); }
   section { padding: 3.5rem 1.25rem; }

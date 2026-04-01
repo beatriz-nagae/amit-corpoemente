@@ -85,19 +85,22 @@ function openProfModal(id) {
   const d = profData[id];
   if (!d) return;
 
-
+  // Injeta foto, nome e cargo
   document.getElementById('profModalImg').src        = d.img;
   document.getElementById('profModalImg').alt        = d.name;
   document.getElementById('profModalName').textContent = d.name;
   document.getElementById('profModalRole').textContent = d.role;
   document.getElementById('profModalBio').textContent  = d.bio;
 
+  // Injeta tags dinamicamente
   document.getElementById('profModalTags').innerHTML =
     d.tags.map(t => `<span class="prof-tag">${t}</span>`).join('');
 
+  // Injeta credenciais
   document.getElementById('profModalCreds').innerHTML =
     d.creds.map(c => `<li>${c}</li>`).join('');
 
+  // Exibe o overlay
   document.getElementById('profModalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }

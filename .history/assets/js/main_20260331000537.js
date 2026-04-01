@@ -57,26 +57,30 @@ reveals.forEach(el => observer.observe(el));
 const profData = {
   marina: {
     name:  'Marina',
-    role:  'Pilates & Massoterapeuta',
+    role:  'Massoterapeuta & Pilates',
     img:   'assets/img/sobre/sobre-marina.jpg',
-    tags:  ['Massoterapia', 'Pilates', 'Limpeza de Pele'],
-    bio:   'Marina é especialista em pilates e massoterapia, com 15 anos de experiência. Formada em Educação Física no Mackenzie, aprofundou-se em Pilates na Universidade Castilla La Mancha, Toledo - Espanha. Mantém relacionamento próximo com seus alunos, que formam a comunidade Amit.',
+    tags:  ['Massoterapia', 'Pilates', 'Drenagem Linfática', 'Bem-estar'],
+    bio:   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Marina é especialista em massoterapia com foco no equilíbrio entre corpo e mente. Sua abordagem combina técnicas clássicas e contemporâneas, oferecendo um atendimento personalizado e acolhedor para cada cliente. Acredita que o autocuidado é um direito de todas as mulheres, independente da rotina.',
     creds: [
-      'Formação em Educação Física (Mackenzie) — 2007',
-      'Curso de Formação Profissional de “Pilates – Uma visão atual na área da saúde”. - METACORPUS',
+      'Formação em Massoterapia — Lorem Institut, 2016',
+      'Especialização em Drenagem Linfática Manual — Método Vodder',
+      'Certificação em Pilates Solo e Aparelho — 200h',
+      'Curso de Aromaterapia Aplicada — Escola Brasileira de Aromaterapia',
+      'Mais de 8 anos de experiência clínica',
     ],
   },
   kessia: {
     name:  'Késsia',
-    role:  'Hipnoterapeuta & Massoterapeuta',
-    img:   'assets/img/sobre/sobre-kessia.jpg',
-    tags:  ['Hipnoterapia', 'Neurociência', 'Massoterapia', 'Terapia de Alta Performance'],
-    bio:   'Kessia Laronga é hipnoterapeuta clínica especializada em desenvolvimento humano, saúde mental e reprogramação comportamental. Possui formação sólida em Hipnoterapia Clínica, Programação Neurolinguística (PNL), Neurociência aplicada e Psicoterapia, com mais de mil horas de capacitação em instituições reconhecidas como a Universidade Brasileira de Hipnose e institutos de neurociência e comportamento.',
+    role:  'Hipnoterapeuta & Coach de Saúde',
+    img:   'https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?w=600&q=80',
+    tags:  ['Hipnoterapia', 'Saúde Mental', 'Coaching', 'Neurociência'],
+    bio:   'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Késsia é hipnoterapeuta clínica com formação em neurociência comportamental. Sua prática une a hipnose clínica moderna com ferramentas de coaching e psicologia positiva, auxiliando clientes a superar bloqueios emocionais, fobias, ansiedade e hábitos que limitam seu pleno desenvolvimento.',
     creds: [
-      'Formação em Hipnoterapia Clínica — Universidade Brasileira de Hipnose',
-      'Programação Neurolinguística PNL - Universidade Brasileira de Hipnose',
-      'Neurociência e Biohacking — Instituto Brasileiro de Neurociência e Biohacking',
-      'Analista Comportamental — Instituto Maestria Comportamental',
+      'Formação em Hipnoterapia Clínica — ABH, 2018',
+      'Especialização em Neurociência Comportamental — Lorem Universidade',
+      'Certificação Internacional em Coaching de Saúde e Bem-estar',
+      'Formação em Programação Neurolinguística (PNL) — Practitioner e Master',
+      'Mais de 500 sessões realizadas',
     ],
   },
 };
@@ -85,19 +89,22 @@ function openProfModal(id) {
   const d = profData[id];
   if (!d) return;
 
-
+  // Injeta foto, nome e cargo
   document.getElementById('profModalImg').src        = d.img;
   document.getElementById('profModalImg').alt        = d.name;
   document.getElementById('profModalName').textContent = d.name;
   document.getElementById('profModalRole').textContent = d.role;
   document.getElementById('profModalBio').textContent  = d.bio;
 
+  // Injeta tags dinamicamente
   document.getElementById('profModalTags').innerHTML =
     d.tags.map(t => `<span class="prof-tag">${t}</span>`).join('');
 
+  // Injeta credenciais
   document.getElementById('profModalCreds').innerHTML =
     d.creds.map(c => `<li>${c}</li>`).join('');
 
+  // Exibe o overlay
   document.getElementById('profModalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }

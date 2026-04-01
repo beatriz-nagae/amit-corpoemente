@@ -60,7 +60,7 @@ const profData = {
     role:  'Pilates & Massoterapeuta',
     img:   'assets/img/sobre/sobre-marina.jpg',
     tags:  ['Massoterapia', 'Pilates', 'Limpeza de Pele'],
-    bio:   'Marina é especialista em pilates e massoterapia, com 15 anos de experiência. Formada em Educação Física no Mackenzie, aprofundou-se em Pilates na Universidade Castilla La Mancha, Toledo - Espanha. Mantém relacionamento próximo com seus alunos, que formam a comunidade Amit.',
+    bio:   'Marina é especialista em pilates e massoterapia, com 15 anos de experiência. Formada em Educação Física no Mackenzie, aprofundou-se em Pilates na Universidade Castilla La Mancha, Toledo - Espanha. Mantém relacionamento próximo com seus alunos, que formam a comunidade Amit.'
     creds: [
       'Formação em Educação Física (Mackenzie) — 2007',
       'Curso de Formação Profissional de “Pilates – Uma visão atual na área da saúde”. - METACORPUS',
@@ -71,12 +71,13 @@ const profData = {
     role:  'Hipnoterapeuta & Massoterapeuta',
     img:   'assets/img/sobre/sobre-kessia.jpg',
     tags:  ['Hipnoterapia', 'Neurociência', 'Massoterapia', 'Terapia de Alta Performance'],
-    bio:   'Kessia Laronga é hipnoterapeuta clínica especializada em desenvolvimento humano, saúde mental e reprogramação comportamental. Possui formação sólida em Hipnoterapia Clínica, Programação Neurolinguística (PNL), Neurociência aplicada e Psicoterapia, com mais de mil horas de capacitação em instituições reconhecidas como a Universidade Brasileira de Hipnose e institutos de neurociência e comportamento.',
+    bio:   'Kessia Laronga é hipnoterapeuta clínica especializada em desenvolvimento humano, saúde mental e reprogramação comportamental. Possui formação sólida em Hipnoterapia Clínica, Programação Neurolinguística (PNL), Neurociência aplicada e Psicoterapia, com mais de mil horas de capacitação em instituições reconhecidas como a Universidade Brasileira de Hipnose e institutos de neurociência e comportamento.'
     creds: [
-      'Formação em Hipnoterapia Clínica — Universidade Brasileira de Hipnose',
-      'Programação Neurolinguística PNL - Universidade Brasileira de Hipnose',
-      'Neurociência e Biohacking — Instituto Brasileiro de Neurociência e Biohacking',
-      'Analista Comportamental — Instituto Maestria Comportamental',
+      'Formação em Hipnoterapia Clínica — ABH, 2018',
+      'Especialização em Neurociência Comportamental — Lorem Universidade',
+      'Certificação Internacional em Coaching de Saúde e Bem-estar',
+      'Formação em Programação Neurolinguística (PNL) — Practitioner e Master',
+      'Mais de 500 sessões realizadas',
     ],
   },
 };
@@ -85,19 +86,22 @@ function openProfModal(id) {
   const d = profData[id];
   if (!d) return;
 
-
+  // Injeta foto, nome e cargo
   document.getElementById('profModalImg').src        = d.img;
   document.getElementById('profModalImg').alt        = d.name;
   document.getElementById('profModalName').textContent = d.name;
   document.getElementById('profModalRole').textContent = d.role;
   document.getElementById('profModalBio').textContent  = d.bio;
 
+  // Injeta tags dinamicamente
   document.getElementById('profModalTags').innerHTML =
     d.tags.map(t => `<span class="prof-tag">${t}</span>`).join('');
 
+  // Injeta credenciais
   document.getElementById('profModalCreds').innerHTML =
     d.creds.map(c => `<li>${c}</li>`).join('');
 
+  // Exibe o overlay
   document.getElementById('profModalOverlay').classList.add('open');
   document.body.style.overflow = 'hidden';
 }

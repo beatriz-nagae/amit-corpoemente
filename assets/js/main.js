@@ -140,7 +140,7 @@ function closeMassaPage(id) {
 document.addEventListener('keydown', (e) => {
   if (e.key !== 'Escape') return;
 
-  // fecha as card pages de massagenm
+  // fecha as card pages de massagem
   document.querySelectorAll('.massa-page.open')
     .forEach(p => p.classList.remove('open'));
 
@@ -150,3 +150,19 @@ document.addEventListener('keydown', (e) => {
   // restaurar o scroll do body
   document.body.style.overflow = '';
 });
+
+/* Páginas de Neuroterapia */
+function openNeuropage(id) {
+  const page = document.getElementById('page-' + id);
+  if (!page) return;
+  page.classList.add('open');
+  document.body.style.overflow = 'hidden';
+  page.scrollTop = 0;
+}
+
+function closeNeuropage(id) {
+  const page = document.getElementById('page-' + id);
+  if (!page) return;
+  page.classList.remove('open');
+  document.body.style.overflow = '';
+}
